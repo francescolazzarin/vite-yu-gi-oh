@@ -11,16 +11,26 @@ import { store } from './store';
     data(){
       return{
         store,
-
       }
     },
     mounted(){
       this.getData()
+      this.getArchetype()
     },
     methods:{
       getData(){
+        
+        if (store.optionValue!= ' '){
+          store.UrlYuGiApi+=`&archetype=${store.optionValue}`
+        }
+        
         axios.get(store.UrlYuGiApi).then((response)=>{
           store.arrayCards=response.data.data
+        })
+      },
+      getArchetype(){
+        axios.get(store.UrlArchetype).then((response)=>{
+          store.arrayArchetype=response.data
         })
       }
     }
@@ -29,7 +39,7 @@ import { store } from './store';
 
 <template>
   <HeaderContent/>
-  <MainContent/>
+  <MainContent @searchCard="getData"/>
 </template>
 
 <style lang="scsss">

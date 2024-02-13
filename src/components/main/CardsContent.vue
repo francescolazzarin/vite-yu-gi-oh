@@ -6,7 +6,7 @@ import { store } from '../../store';
     export default{
         name:'CardsContent',
         props:{
-          propsCard:String
+          propsCard:Object
         },
         data(){
             return{

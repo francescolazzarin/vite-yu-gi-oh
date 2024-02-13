@@ -9,9 +9,12 @@ import { store } from '../../store';
         },
         name:'MainContent',
         components:{
-            CardsContent
-
-        }    
+            CardsContent,
+           
+        }, 
+        methods:{
+              
+        } 
     }
 
 </script>
@@ -19,10 +22,21 @@ import { store } from '../../store';
 <template>
     
     <main class="px-5 py-3">
-        <div class="mb-3">
-            <select class="form-select w-25 " name="" id="">
 
-                <option value="">alien</option>        
+        <div class="mb-3">
+            <select class="form-select w-25 " 
+            name="" 
+            id=""
+            v-model="store.optionValue"
+            @change="$emit('searchCard')">
+
+                <option 
+                :value="element.archetype_name" 
+                v-for="(element,index) in store.arrayArchetype" 
+                :key="index"
+               >
+                {{ element.archetype_name }}
+                </option>        
 
             </select>
         </div>
